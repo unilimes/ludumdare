@@ -71,6 +71,7 @@ export class Game extends Renderer {
             let sound = new THREE.PositionalAudio(this.camera.listener);
 
             new THREE.AudioLoader().load('resources/audio/Bad_Cat_Maste.ogg', (buffer) => {
+                sound.setLoop(true);
                 sound.setBuffer(buffer);
                 sound.setRefDistance(250); // radius
                 sound.play();
