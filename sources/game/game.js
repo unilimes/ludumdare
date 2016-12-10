@@ -61,7 +61,7 @@ export class Game extends Renderer {
             shading: THREE.FlatShading
         });
 
-        this.loader.loadObj('resources/models/planet/planet', { position: [0, 0, 0], scale: 1.0 }, (object) => {
+        this.loader.loadObj('resources/models/planet/planet', { position: [250, 0, 250], scale: 0.5 }, (object) => {
             object.name = 'Sun';
 
             object.children.forEach((child) => {
@@ -69,14 +69,19 @@ export class Game extends Renderer {
             });
 
             object.animation = new Tween(object.rotation)
-                .to({ y: Math.PI * 2 }, 50000)
+                .to({ y: -Math.PI * 2 }, 25000)
                 .repeat(Infinity)
                 .start();
 
-            this.orbit = new THREE.Group();
-            this.orbit.position.set(-1000, 0 -1000);
-            this.orbit.add(object);
-            this.scene.add(this.orbit);
+            object.orbit = new THREE.Group();
+            object.orbit.position.set(0, 0, 0);
+            object.orbit.animation = new Tween(this.orbit.rotation)
+                .to({ y: -Math.PI * 2 }, 25000)
+                .repeat(Infinity)
+                .start();
+
+            object.orbit.add(object);
+            this.scene.add(object.orbit);
         });
 
         // Planet
