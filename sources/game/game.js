@@ -72,7 +72,7 @@ export class Game extends Renderer {
 
             new THREE.AudioLoader().load('resources/audio/Bad_Cat_Maste.ogg', (buffer) => {
                 sound.setBuffer(buffer);
-                sound.setRefDistance(500); // radius
+                sound.setRefDistance(250); // radius
                 sound.play();
             });
 
