@@ -21,9 +21,9 @@ export class Events {
             this.emit("error");
         };
 
-        this.renderer.domElement.addEventListener("mouseup", (event) => this.emit("mouseup", event), false);
-        this.renderer.domElement.addEventListener("mousedown", (event) => this.emit("mousedown", event), false);
-        this.renderer.domElement.addEventListener("mousemove", (event) => this.emit("mousemove", event), false);
+        this.renderer.domElement.addEventListener("mouseup", (event) => this.emit("mouseup, pointerup", event), false);
+        this.renderer.domElement.addEventListener("mousedown", (event) => this.emit("mousedown, pointerdown", event), false);
+        this.renderer.domElement.addEventListener("mousemove", (event) => this.emit("mousemove, pointermove", event), false);
 
         window.addEventListener("orientationchange", () => this.emit("orientationchange"), false);
         window.addEventListener("resize", () => this.emit("resize"), false);

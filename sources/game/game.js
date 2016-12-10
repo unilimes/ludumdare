@@ -41,6 +41,20 @@ export class Game extends Renderer {
         this.space.geometry.scale(-1, 1, 1);
         this.scene.add(this.space);
 
+        // Audio
+        let soundClick = new THREE.Audio(this.camera.listener);
+
+        new THREE.AudioLoader().load('resources/audio/Project_Utopia.ogg', function (buffer) {
+            soundClick.setBuffer(buffer);
+            soundClick.setVolume(0.5);
+        });
+
+        this.events.on('pointerup', () => {
+            if (!soundClick.isPlaying) {
+                soundClick.play();
+            }
+        });
+
         // Sun
         let sunMaterial = new THREE.MeshPhongMaterial({
             map: this.loader.loadTexture('resources/models/planet/sun.jpg'),
@@ -49,7 +63,10 @@ export class Game extends Renderer {
             shading: THREE.FlatShading
         });
 
-        this.loader.loadObj('resources/models/planet/planet', { position: [250, 0, 250], scale: 0.5 }, (object) => {
+        this.loader.loadObj('resources/models/planet/planet', {
+            position: [250, 0, 250],
+            scale: 0.5
+        }, (object) => {
             object.name = 'Sun';
 
             object.children.forEach((child) => {
@@ -57,27 +74,27 @@ export class Game extends Renderer {
             });
 
             object.animation = new Tween(object.rotation)
-                .to({ y: -Math.PI * 2 }, 25000)
+                .to({y: -Math.PI * 2}, 25000)
                 .repeat(Infinity)
                 .start();
 
             object.orbit = new THREE.Group();
             object.orbit.position.set(0, 0, 0);
             object.orbit.animation = new Tween(object.orbit.rotation)
-                .to({ y: -Math.PI * 2 }, 25000)
+                .to({y: -Math.PI * 2}, 25000)
                 .repeat(Infinity)
                 .start();
 
-            let sound = new THREE.PositionalAudio(this.camera.listener);
+            let soundSun = new THREE.PositionalAudio(this.camera.listener);
 
             new THREE.AudioLoader().load('resources/audio/Bad_Cat_Maste.ogg', (buffer) => {
-                sound.setLoop(true);
-                sound.setBuffer(buffer);
-                sound.setRefDistance(250); // radius
-                sound.play();
+                soundSun.setLoop(true);
+                soundSun.setBuffer(buffer);
+                soundSun.setRefDistance(250); // radius
+                soundSun.play();
             });
 
-            object.add(sound);
+            object.add(soundSun);
 
             object.orbit.add(object);
             this.scene.add(object.orbit);
@@ -91,7 +108,10 @@ export class Game extends Renderer {
             shading: THREE.FlatShading
         });
 
-        this.loader.loadObj('resources/models/planet/planet', { position: [0, 0, 0], scale: 1.0 }, (object) => {
+        this.loader.loadObj('resources/models/planet/planet', {
+            position: [0, 0, 0],
+            scale: 1.0
+        }, (object) => {
             object.name = 'Planet';
 
             object.children.forEach((child) => {
@@ -99,7 +119,7 @@ export class Game extends Renderer {
             });
 
             object.animation = new Tween(object.rotation)
-                .to({ y: Math.PI * 2 }, 50000)
+                .to({y: Math.PI * 2}, 50000)
                 .repeat(Infinity)
                 .start();
 
