@@ -1,5 +1,5 @@
 # Ludumdare
-Basic project with webpack
+Basic project with webpack for ludumdare
 
 ### Install
 + `npm install` - Npm packages
