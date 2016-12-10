@@ -1,0 +1,42 @@
+{
+  "name": "packs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "gulp": "./node_modules/.bin/gulp",
+    "webpack": "./node_modules/.bin/webpack",
+    "webpack-dev-server": "./node_modules/.bin/webpack-dev-server",
+    "build-app": "./node_modules/.bin/webpack",
+    "watch-app": "./node_modules/.bin/webpack --watch",
+    "build-vendors": "./node_modules/.bin/gulp build:vendors",
+    "build": "npm run build-vendors && npm run build-app",
+    "watch": "npm run build-vendors && npm run watch-app",
+    "serve": "npm run build-vendors && npm run webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-preset-es2015": "^6.18.0",
+    "css-loader": "^0.26.0",
+    "file-loader": "^0.9.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^2.0.0",
+    "html-loader": "^0.4.4",
+    "jshint": "^2.9.4",
+    "jshint-loader": "^0.8.3",
+    "json-loader": "^0.5.4",
+    "ng-annotate-webpack-plugin": "^0.1.3",
+    "node-sass": "^3.13.0",
+    "sass-loader": "^4.0.2",
+    "shader-loader": "^1.3.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
