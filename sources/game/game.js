@@ -75,7 +75,7 @@ export class Game extends Renderer {
 
             object.orbit = new THREE.Group();
             object.orbit.position.set(0, 0, 0);
-            object.orbit.animation = new Tween(this.orbit.rotation)
+            object.orbit.animation = new Tween(object.orbit.rotation)
                 .to({ y: -Math.PI * 2 }, 25000)
                 .repeat(Infinity)
                 .start();
