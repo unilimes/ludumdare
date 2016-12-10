@@ -14,18 +14,6 @@ export class Game extends Renderer {
         // Fog
         this.scene.fog = new THREE.FogExp2(0x000000, 0.000085);
 
-        //// Shadow
-        //this.shadow = new THREE.Mesh(
-        //    new THREE.CylinderBufferGeometry(18, 18, 0.1, 64),
-        //    new THREE.ShadowMaterial()
-        //);
-        //this.shadow.material.opacity = 0.5;
-        //this.shadow.name = 'Shadow';
-        //this.shadow.position.set(0, 0.5, 0);
-        //this.shadow.receiveShadow = true;
-        //this.shadow.visible = true;
-        //this.scene.add(this.shadow);
-
         // Light
         this.hemisphere = new THREE.HemisphereLight(0xfff8ed, 0x222222, 0.8);
         this.hemisphere.name = 'Hemisphere';
@@ -79,6 +67,16 @@ export class Game extends Renderer {
                 .to({ y: -Math.PI * 2 }, 25000)
                 .repeat(Infinity)
                 .start();
+
+            let sound = new THREE.PositionalAudio(this.camera.listener);
+
+            new THREE.AudioLoader().load('resources/audio/Bad_Cat_Maste.ogg', (buffer) => {
+                sound.setBuffer(buffer);
+                sound.setRefDistance(500); // radius
+                sound.play();
+            });
+
+            object.add(sound);
 
             object.orbit.add(object);
             this.scene.add(object.orbit);

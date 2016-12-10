@@ -56,6 +56,8 @@ export class Renderer {
         this.camera = new THREE.PerspectiveCamera(75, this.width / this.height, 1, 50000);
         this.camera.name = "Camera";
         this.camera.position.set(0, 0, -1);
+        this.camera.listener = new THREE.AudioListener();
+        this.camera.add(this.camera.listener);
         this.scene.add(this.camera);
 
         // Raycaster
