@@ -21,8 +21,19 @@ export class Events {
             this.emit("error");
         };
 
+        this.renderer.domElement.addEventListener("click", (event) => this.emit("click", event), false);
+        this.renderer.domElement.addEventListener("dblclick", (event) => this.emit("dblclick", event), false);
+        this.renderer.domElement.addEventListener("contextmenu", (event) => this.emit("contextmenu", event), false);
+
         this.renderer.domElement.addEventListener("mouseup", (event) => this.emit("mouseup, pointerup", event), false);
+        this.renderer.domElement.addEventListener("mouseout", (event) => this.emit("mouseout", event), false);
+        this.renderer.domElement.addEventListener("touchend", (event) => this.emit("touchend, pointerup", event), false);
+        this.renderer.domElement.addEventListener("touchcancel", (event) => this.emit("touchcancel", event), false);
+        this.renderer.domElement.addEventListener("touchleave", (event) => this.emit("touchleave", event), false);
+
         this.renderer.domElement.addEventListener("mousedown", (event) => this.emit("mousedown, pointerdown", event), false);
+        this.renderer.domElement.addEventListener("touchstart", (event) => this.emit("touchstart, pointerdown", event), false);
+
         this.renderer.domElement.addEventListener("mousemove", (event) => this.emit("mousemove, pointermove", event), false);
 
         window.addEventListener("orientationchange", () => this.emit("orientationchange"), false);
